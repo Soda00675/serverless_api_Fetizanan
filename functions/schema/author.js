@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const authorSchema = new Schema({
@@ -13,13 +14,12 @@ const authorSchema = new Schema({
   username: String,
   password: String,
 });
-
-authorSchema.pre('save', function (next) {
-  const username = this.name.toLowerCase().replace(/\s/g, '');
-  const password = `${this.name}${this.age}^`;
+authorSchema.pre("save", function (next) {
+  const username = this.name.toLowerCase().replace(/\s/g, "");
+  const password = `${this.name}${this.age}`;
   this.username = username;
   this.password = password;
   next();
 });
 
-module.exports = mongoose.model('Author', authorSchema);
+module.exports = authorSchema;
